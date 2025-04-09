@@ -1,8 +1,8 @@
+"use client"
 import { Toaster } from "sonner";
 import "./globals.css";
 import { Providers } from "./providers";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import Loader from "@/components/Loader";
 import { ThemeProvider } from "next-themes";
@@ -12,17 +12,13 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import { Separator } from "@radix-ui/react-separator";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+  const excludeSidebarPaths = ["/register", "/login"];
+  const showSidebar = !excludeSidebarPaths.includes(pathname);
+
   return (
     <html lang="en">
       {/* Favicon */}
@@ -36,18 +32,24 @@ export default function RootLayout({ children }) {
       <body className="bg-white md:bg-[#F0F2F5] dark:bg-gray-950 dark:text-white">
         <Providers>
           <ThemeProvider attribute="class">
-            <div className="flex flex-col min-h-screen justify-between ">
-              {/*  <Navbar /> */}
+            <div className="flex flex-col min-h-screen justify-between">
+              {/* <Navbar /> */}
               <Suspense fallback={<Loader />}>
-                <SidebarProvider>
-                  <AppSidebar />
-                  <SidebarInset>
-                    <Navbar />
-                    <main className="py-6 ">{children}</main>
-                  </SidebarInset>
-                </SidebarProvider>
+                {showSidebar ? (
+                  <SidebarProvider defaultOpen={false}>
+                    <AppSidebar />
+                    <SidebarInset>
+                      <Navbar />
+                      <main>{children}</main>
+                    </SidebarInset>
+                  </SidebarProvider>
+                ) : (
+                  <>
+                    <main>{children}</main>
+                  </>
+                )}
               </Suspense>
-             {/*  <Footer /> */}
+              {/* <Footer /> */}
             </div>
           </ThemeProvider>
         </Providers>

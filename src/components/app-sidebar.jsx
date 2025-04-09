@@ -161,14 +161,14 @@ export function AppSidebar({
   ...props
 }) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} >
       <SidebarHeader>
-      <SidebarTrigger  />
+      {/* <SidebarTrigger  /> */}
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
       {/*   <NavMain items={data.navMain} /> */}
-        <NavProjects projects={data.projects} />
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

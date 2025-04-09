@@ -11,7 +11,7 @@ import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
-import { LoginModal } from "./LoginModal";
+import { LoginModal } from "./LoginForm";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../redux/authSlice";
 import { TokenExpiredModal } from "./TokenExpiredModal";
@@ -123,11 +123,6 @@ const Navbar = () => {
         </div>
       </header>
       <TokenExpiredModal />
-      <LoginModal
-        loginOpen={loginOpen}
-        setLoginOpen={setLoginOpen}
-        user={user}
-      />
     </Fragment>
   );
 };

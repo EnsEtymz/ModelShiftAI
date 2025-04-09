@@ -18,8 +18,10 @@ import {
   FileText,
   MoreHorizontal,
   Mic,
+  SendHorizontal,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { InputModelSelect } from "@/components/InputModelSelect";
 
 export default function ChatPage() {
   const features = [
@@ -66,42 +68,25 @@ export default function ChatPage() {
             Nasıl yardımcı olabilirim?
           </h1>
           <div className="w-full max-w-2xl space-y-4">
-            <div className="relative">
+           
+            <div className="relative flex items-center justify-center border-2 border-zinc-300 dark:border-zinc-700 rounded-lg overflow-hidden ">
+              <div className="h-12 min-w-48 bg-slate-50 dark:bg-zinc-950 relative overflow-hidden" >
+            <InputModelSelect /></div>
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Herhangi bir şey sor"
                 onKeyPress={(e) => e.key === "Enter" && handleSend()}
-                className=" pl-12 pr-12 dark:text-white dark:placeholder:text-zinc-400 h-12 "
+                className=" pl-6 pr-12 dark:text-white dark:placeholder:text-zinc-400 h-12 rounded-none border-l-1 border-y-0 border-zinc-300 dark:border-zinc-700 focus:ring-0 focus-visible:ring-0 dark:bg-zinc-900 dark:focus:border-zinc-700"
               />
-              <Button
-                size="icon"
-                variant="ghost"
-                className="absolute left-2 top-1/2 h-8 w-8 -translate-y-1/2 text-zinc-400"
-              >
-                <Plus className="h-5 w-5" />
-              </Button>
+              
               <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-1">
                 <Button
                   size="icon"
                   variant="ghost"
                   className="h-8 w-8 text-zinc-400"
                 >
-                  <Globe className="h-5 w-5" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="h-8 w-8 text-zinc-400"
-                >
-                  <Lightbulb className="h-5 w-5" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="h-8 w-8 text-zinc-400"
-                >
-                  <Mic className="h-5 w-5" />
+                  <SendHorizontal className="h-5 w-5" />
                 </Button>
               </div>
             </div>
